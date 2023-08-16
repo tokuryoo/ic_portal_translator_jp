@@ -11,7 +11,7 @@ rustc 1.67.0 (fc594f156 2023-01-24)
 バージョンは、いくつでも動くかもしれない。少なくとも、上記バージョンで動作する。
 
 ## 前提条件２
-[portal](https://github.com/dfinity/portal) の README に従って、npm start してブラウザで http://localhost:3000/ を確認できる状態であること。
+[portal](https://github.com/dfinity/portal) の README に従って、npm start してブラウザで http://localhost:3000/ を確認できる状態だとベスト。最低限 git clone git@github.com:dfinity/portal.git は必要。
 ```
 $ git clone git@github.com:dfinity/portal.git
 $ cd portal/
@@ -20,10 +20,14 @@ $ npm install
 $ npm start
 ```
 
+## 前提条件３
+DeepL API の APIキーを発行済み。
+
 # 実行手順
 1. git clone
+カレントディレクトリは任意。
 ```
-$ git clone git@github.com:tokuryoo/deepl_markdown_translator_to_jp
+$ git clone git@github.com:tokuryoo/ic_portal_translator_jp.git
 ```
 
 2. main.rs の下記の箇所に、翻訳したいファイルの全体パスを記述する。
@@ -40,7 +44,7 @@ main.rs を修正する。
 
 3. 実行
 ```
-$ cd deepl_markdown_translator_to_jp
+$ cd ic_portal_translator_jp
 $ export AUTH_KEY=<あなたのAPIキー>
 $ cargo run
 ```
@@ -51,5 +55,5 @@ $ cargo run
 # TODO
 - [ ] 現状 let path で翻訳したいファイルを指定している。つまり、１度に１ファイルだけしか翻訳できない。何らかの方法で複数のファイルを指定できるようにしたい。自動的に全ファイルを翻訳すると何かと支障がありそう。既に翻訳済みのファイルを再度翻訳することは避けたい（DeepL API の費用削減）。
 - [ ] 翻訳結果を xxx-translated.md として別ファイルへ出力ではなく、原文のファイルへ上書きしたい。しかし、動作確認時に繰り返し実行したい場合、不便ではあるので後回しにしている。
-- [ ] 翻訳結果が英語のままだったり、そもそも Deepl API を呼び出せてないバグがある。
+- [ ] 翻訳結果が英語のままだったり、そもそも Deepl API を呼び出すべきの行で呼び出せてないバグがあるかもしれない。
 - [ ] DeeL API の辞書を利用している。"Internet Computer" のような固有名詞は、翻訳結果も "Internet Computer" としたい。しかし、そのように辞書を登録しても無視されてしまう。カタカナへ翻訳してから、英語へ置換すると良いかも？
